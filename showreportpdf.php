@@ -147,7 +147,7 @@ class PDF extends FPDF
 					//Move to the right
 					$this->Cell(10);
 					//Title
-					$this->Cell(0,-13,$code_report,0,0,'C');
+					//$this->Cell(0,-13,$code_report,0,0,'C');
 					//Line break
 					$this->Ln(10);
 				}
