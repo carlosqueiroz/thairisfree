@@ -10,3 +10,6 @@ Release Note :
 1.1 Comming soon
 - Fix some worklist searching not working (Order, Examroom, Radiology worklist)
 - Admin tool add/edit/delete, user, procedure, referrer, department 
+
+10-Jan-2017
+- Fix PDF report not create to folder after approved report from dictate worklist (added reportpdf folder)
