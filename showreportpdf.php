@@ -322,7 +322,7 @@ $pdf->Ln(3); //New Line
 $pdf->Line(20, 275, 196, 275);
 
 
-if ($CREATE_REPORT_PDF !== '1')
+if (($CREATE_REPORT_PDF !== '1') AND ($DICTATE !== 'YES'))
 	{
 		$pdf->Output();
 	}

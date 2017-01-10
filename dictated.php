@@ -208,7 +208,13 @@ if ($DICTATE_TYPE == 'Approve')
 $TEXTREPORT = $BIRAD.$TEXTREPORT;
 
 ?>
-
+<!--
 <script type="text/javascript">
 	window.location="dictate-worklist.php";
 </script>
+-->
+    <script>
+        var timer = setTimeout(function() {
+            window.location='dictate-worklist.php'
+        }, 1000);
+    </script>
