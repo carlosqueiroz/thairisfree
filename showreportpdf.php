@@ -2,19 +2,17 @@
 ############################################
 # ThaiRIS (Thai Radiology Information System)
 # Version: 1.0
-# File last modified: 8 Nov 2016
-# File name: 
-# Description :  
+# File last modified: 10 Jan 2017 for Paul // show center on top 
+# File name: showreportpdf.php
+# Description :  for display PDF report 
 # http://www.thairis.net
 # Email : info.xraythai@gmail.com
 ############################################
 include ("connectdb.php");
 include "session.php";
-//include ("function.php");
-//define('FPDF_FONTPATH', 'pdf/font/');
 include ("./pdf/fpdf_thai.php");
+$ACCESSION = $_GET['ACCESSION'];
 
-$ACCESSION = $_GET[ACCESSION];
 /////////////////////////////Fuction//////////////////////////////////////
 function DateThai02($strDate)
 {
@@ -76,15 +74,6 @@ function AgeCal($birthday)
 	}
 /////////////////////////////////////////////////////////////////////	
 
-//$sql = "SELECT *
-//			FROM xray_report 
-//			INNER JOIN xray_request ON xray_report.ACCESSION = '$ACCESSION' 
-//			INNER JOIN xray_request_detail ON xray_report.ACCESSION=xray_request_detail.ACCESSION 
-//			AND xray_request_detail.REQUEST_NO = xray_request.REQUEST_NO
-//			INNER JOIN xray_patient_info ON xray_request.MRN = xray_patient_info.MRN 
-//			INNER JOIN xray_code ON xray_request_detail.XRAY_CODE=xray_code.XRAY_CODE
-//			INNER JOIN xray_department ON xray_request.DEPARTMENT_ID = xray_department.DEPARTMENT_ID";
-
 $sql = "SELECT 
 			xray_request_detail.ACCESSION, 
 			xray_patient_info.NAME, 
@@ -97,6 +86,7 @@ $sql = "SELECT
 			xray_request_detail.ARRIVAL_TIME,
 			xray_request_detail.APPROVED_TIME,
 			xray_report.REPORT,
+			xray_report.CENTER_CODE AS CODE_REPORT,
 			xray_user.NAME AS APPROVE_BY,
 			xray_user.LASTNAME AS AP_LAST,
 			xray_referrer.NAME AS RNAME,
@@ -111,36 +101,20 @@ $sql = "SELECT
 			INNER JOIN xray_referrer on xray_request.REFERRER = xray_referrer.REFERRER_ID";			
 $result = mysql_query($sql);
 
-//		$acc = $row[ACCESSION];
-//		$ptname = $row[NAME];
-//		$ptlastname = $row[LASTNAME];
-//		$report =$row[REPORT];
-//		$MRN= $row[MRN];
-//		$procedure = $row[DESCRIPTION];
-//		$examtime =$row[ARRIVAL_TIME];
-//		$approvetime = $row[APPROVED_TIME];
-//		$approveby = $row[APPROVE_BY];
-//		$approve_lastname = $row[AP_LAST];
-//		$department = $row[NAME_THAI];
-//		$referrer = $row[REFERRER];
-//		$AGE = $row[BIRTH_DATE];
-//		$sex = $row[SEX];
-//		$refer_name = $row[RNAME];
-//		$refer_last = $row[RLAST];
-
 while($row = mysql_fetch_array($result)){
-	$acc = ": ".$row[ACCESSION];
-	$ptname = ": ".$row[NAME]. " ".$row[LASTNAME];
-	$age = ": ".AgeCal($row[BIRTH_DATE]);
-	$sex = $row[SEX];
-	$report = $row[REPORT];
-	$MRN= ": ".$row[MRN];
-	$procedure = ": ".$row[DESCRIPTION];
-	$department = ": ".$row[NAME_THAI];
-	$reporttime = " : ".DateThai02($row[APPROVED_TIME]);
-	$requesttime = ": ".DateThai02($row[ARRIVAL_TIME]);
-	$approveby = $row[APPROVE_BY]." ".$row[AP_LAST];
-	$referrer = $row[RNAME]." ".$row[RLAST];
+	$acc = ": ".$row['ACCESSION'];
+	$ptname = ": ".$row['NAME']. " ".$row['LASTNAME'];
+	$age = ": ".AgeCal($row['BIRTH_DATE']);
+	$sex = $row['SEX'];
+	$report = $row['REPORT'];
+	$code_report = $row['CODE_REPORT'];
+	$MRN= ": ".$row['MRN'];
+	$procedure = ": ".$row['DESCRIPTION'];
+	$department = ": ".$row['NAME_THAI'];
+	$reporttime = " : ".DateThai02($row['APPROVED_TIME']);
+	$requesttime = ": ".DateThai02($row['ARRIVAL_TIME']);
+	$approveby = $row['APPROVE_BY']." ".$row['AP_LAST'];
+	$referrer = $row['RNAME']." ".$row['RLAST'];
 }
 
 
@@ -160,18 +134,20 @@ class PDF extends FPDF
 			var $I;
 			var $U;
 			var $HREF;
+			
 
 			//Page header
 			function Header()
 				{	
+					$code_report = $GLOBALS['code_report'];
 					//Logo
 					$this->Image('image/banner-report.jpg',30,5,150);
 					//Arial bold 15
 					$this->SetFont('Arial','B',15);
 					//Move to the right
-					$this->Cell(80);
+					$this->Cell(10);
 					//Title
-					//$this->Cell(30,10,'RIS DEMO',1,0,'C');
+					$this->Cell(0,-13,$code_report,0,0,'C');
 					//Line break
 					$this->Ln(10);
 				}
@@ -316,7 +292,7 @@ $pdf->Ln(5);
 $pdf->Ln(5);		
         $pdf->Cell(15,6,'HN  ',0,0,'L');
         $pdf->Cell(65,6,$MRN,0,0,'L');
-        $pdf->Cell(20,6,'Order ',0,0,'L');
+        $pdf->Cell(20,6,'Procedure ',0,0,'L');
         $pdf->Cell(50,6,$procedure,0,0,'L');
 $pdf->Ln(5);		
         $pdf->Cell(15,6,'ACC ',0,0,'L');
@@ -344,5 +320,14 @@ $pdf->Write(5,$txt);
 $pdf->Ln(3); //New Line
 
 $pdf->Line(20, 275, 196, 275);
-$pdf->Output();
+
+if ($CREATE_FILE == '')
+	{
+		$pdf->Output();
+	}
+
+if ($CREATE_REPORT_PDF == '1')
+	{
+		$pdf->Output("$REPORT_PATH/$ACCESSION.pdf","F");
+	}
 ?>

@@ -1368,7 +1368,9 @@ CREATE TABLE IF NOT EXISTS `xray_report` (
   `APPROVE_BY` varchar(10) DEFAULT NULL,
   `APPROVE_DATE` date DEFAULT NULL,
   `APPROVE_TIME` time DEFAULT NULL,
-  `STATUS` varchar(20) DEFAULT NULL
+  `STATUS` varchar(20) DEFAULT NULL,
+  `CENTER_CODE` varchar(20) DEFAULT NULL,
+  `REFERRER_ID` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=113992 DEFAULT CHARSET=tis620;
 
 -- --------------------------------------------------------
@@ -2132,7 +2134,7 @@ ALTER TABLE `xray_film_folder`
 -- AUTO_INCREMENT for table `xray_log`
 --
 ALTER TABLE `xray_log`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10093;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `xray_order_cart`
 --
@@ -2142,7 +2144,7 @@ ALTER TABLE `xray_order_cart`
 -- AUTO_INCREMENT for table `xray_patient_info`
 --
 ALTER TABLE `xray_patient_info`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22282278;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `xray_preparation`
 --
@@ -2157,7 +2159,7 @@ ALTER TABLE `xray_referrer`
 -- AUTO_INCREMENT for table `xray_report`
 --
 ALTER TABLE `xray_report`
-  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=113992;
+  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `xray_report_structure`
 --

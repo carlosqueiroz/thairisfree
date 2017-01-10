@@ -2,9 +2,9 @@
 ############################################
 # ThaiRIS (Thai Radiology Information System)
 # Version: 1.0
-# File last modified: 8 Nov 2016
-# File name: 
-# Description :  
+# File last modified: 10 Jan 2017
+# File name: dictated.php
+# Description : save report to database after click button approve
 # http://www.thairis.net
 # Email : info.xraythai@gmail.com
 ############################################
@@ -191,9 +191,9 @@ if ($DICTATE_TYPE == 'Approve')
 	{
 		$sql1 = "UPDATE xray_request_detail SET STATUS='APPROVED', REPORT_STATUS='1', PAGE='END', APPROVED_TIME=now() where ID='$ORDERID'";
 		$sql2 = "INSERT INTO xray_report 
-					(ACCESSION, REPORT, BIRAD, DICTATE_BY, DICTATE_DATE, DICTATE_TIME, APPROVE_BY, APPROVE_DATE, APPROVE_TIME) 
+					(ACCESSION, REPORT, BIRAD, DICTATE_BY, DICTATE_DATE, DICTATE_TIME, APPROVE_BY, APPROVE_DATE, APPROVE_TIME, CENTER_CODE, REFERRER_ID) 
 					values 
-					('$ACCESSION', '$TEXTREPORT', '$BIRAD_LEVEL', '$userid',  CURDATE(), NOW(), '$userid', CURDATE(), NOW())";
+					('$ACCESSION', '$TEXTREPORT', '$BIRAD_LEVEL', '$userid',  CURDATE(), NOW(), '$userid', CURDATE(), NOW(), '$center_code', '$REF_ID')";
 			
 		//$sql3 = "UPDATE xray_request_detail SET LASTREPORT_ID='$last_id' WHERE ACCESSION='$ACCESSION'";
 		$sql4 = "UPDATE xray_request_detail SET TEMP_REPORT='$TEXTREPORT' WHERE ID='$ORDERID'";
@@ -201,7 +201,8 @@ if ($DICTATE_TYPE == 'Approve')
 		mysql_query($sql2);
 		mysql_query($sql4);
 		$last_id = (mysql_insert_id());		
-		//mysql_query($sql3);
+		echo "<iframe src='showreportpdf.php?ACCESSION=$ACCESSION' height='0' width='0'></iframe>";
+
 	}
 	
 $TEXTREPORT = $BIRAD.$TEXTREPORT;
