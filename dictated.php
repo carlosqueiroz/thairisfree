@@ -201,7 +201,7 @@ if ($DICTATE_TYPE == 'Approve')
 		mysql_query($sql2);
 		mysql_query($sql4);
 		$last_id = (mysql_insert_id());		
-		echo "<iframe src='showreportpdf.php?ACCESSION=$ACCESSION' height='0' width='0'></iframe>";
+		echo "<iframe src='showreportpdf.php?ACCESSION=$ACCESSION&DICTATE=YES' height='0' width='0'></iframe>";
 
 	}
 	

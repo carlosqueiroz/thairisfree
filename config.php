@@ -1,7 +1,7 @@
 <?php
 # ThaiRIS (Thai Radiology Information System)
 # Version: 1.0
-# File last modified: 18 AUG 2013
+# File last modified: 11 Jan 2017 // Update PDF report option
 # File name: config.php
 # http://www.thairis.net
 # By ThaiRIS.Net
@@ -23,7 +23,6 @@
 $auto_request_no = 1;
 $CREATELOG_FILE=1;
 $TIME_EDIT_REPORT = 60; // minute
-//This for optional don't change application will not work//
 $auto_print_request = 0;
 $auto_print_report = 0;
 $CREATEHL7=1;

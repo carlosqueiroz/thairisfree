@@ -2,7 +2,7 @@
 ############################################
 # ThaiRIS (Thai Radiology Information System)
 # Version: 1.0
-# File last modified: 10 Jan 2017 for Paul // show center on top 
+# File last modified: 10 Jan 2017 show center on top 
 # File name: showreportpdf.php
 # Description :  for display PDF report 
 # http://www.thairis.net
@@ -12,7 +12,7 @@ include ("connectdb.php");
 include "session.php";
 include ("./pdf/fpdf_thai.php");
 $ACCESSION = $_GET['ACCESSION'];
-
+$DICTATE = $_GET['DICTATE'];
 /////////////////////////////Fuction//////////////////////////////////////
 function DateThai02($strDate)
 {
@@ -321,12 +321,13 @@ $pdf->Ln(3); //New Line
 
 $pdf->Line(20, 275, 196, 275);
 
-if ($CREATE_REPORT_PDF == '')
+
+if ($CREATE_REPORT_PDF !== '1')
 	{
 		$pdf->Output();
 	}
 
-if ($CREATE_REPORT_PDF == '1')
+if (($CREATE_REPORT_PDF == '1') AND ($DICTATE == 'YES'))
 	{
 		$pdf->Output("$REPORT_PATH/$ACCESSION.pdf","F");
 	}
