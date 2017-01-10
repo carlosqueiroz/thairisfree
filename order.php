@@ -14,6 +14,27 @@ include "session.php";
 include ("function.php");
 set_time_limit(0);
 
+//$searchbox = isset($_GET['searchbox']) ? $_GET['searchbox'] : null;
+//$searchdate = isset($_GET['searchdate']) ? $_GET['searchdate'] : null;
+//$datestart = isset($_GET['date001']) ? $_GET['date001'] : null;
+//$dateend = isset($_GET['date002']) ? $_GET['date002'] : null;
+//$searchtoday = isset($_GET['today']) ? $_GET['today'] : null;
+//$todaytype = isset($_GET['todaytype']) ? $_GET['todaytype'] : null;
+//$searchhn = isset($_GET['searchhn']) ? $_GET['searchhn'] : null;
+//$searchxn = isset($_GET['searchxn']) ? $_GET['searchxn'] : null;
+//$searchname = isset($_GET['searchname']) ? $_GET['searchname'] : null;
+//$searchlast = isset($_GET['searchlast']) ? $_GET['searchlast'] : null;
+//$department = isset($_GET['department']) ? $_GET['department'] : null;
+//$mod1 = isset($_GET['Mod_option1']) ? $_GET['Mod_option1'] : null;
+//$mod2 = isset($_GET['Mod_option2']) ? $_GET['Mod_option2'] : null;
+//$mod3 = isset($_GET['Mod_option3']) ? $_GET['Mod_option3'] : null;
+//$mod4 = isset($_GET['Mod_option4']) ? $_GET['Mod_option4'] : null;
+//$mod5 = isset($_GET['Mod_option5']) ? $_GET['Mod_option5'] : null;
+//$mod6 = isset($_GET['Mod_option6']) ? $_GET['Mod_option6'] : null;
+//$mod7 = isset($_GET['Mod_option7']) ? $_GET['Mod_option7'] : null;
+//$mod8 = isset($_GET['Mod_option8']) ? $_GET['Mod_option8'] : null;
+
+
 $searchbox = $_POST['searchbox'];
 $searchdate = $_POST['searchdate'];
 $datestart = $_POST['date001'];
@@ -34,9 +55,11 @@ $mod6 = $_POST['Mod_option6'];
 $mod7 = $_POST['Mod_option7'];
 $mod8 = $_POST['Mod_option8'];
 
+
 if ($datestart =="")
 	{
-		$datestart = date("Y-m-d",mktime(0, 0, 0, date("m"), date("d")-360,date("Y"))); // Yesterday
+		$datestart = date("Y-m-d",mktime(0, 0, 0, date("m"), date("d")-30,date("Y"))); // 30 daby back Yesterday
+		//$datestart = date("Y-m-d",mktime(0, 0, 0, date("m"), date("d")-3,date("Y")));  3 day back
 	}
 
 if ($dateend =='')
@@ -67,7 +90,9 @@ if ($dateend =='')
     text-align:center;  
 }  
 </style> 
- 
+<script language=JavaScript src="frames_body_array_<?php  echo $LANGUAGE; ?>.js" type=text/javascript></script>
+<script language=JavaScript src="mmenu.js" type=text/javascript></script> 
+  
 <script type="text/javascript" src='Scripts/jquery-1.4.4.js'></script>
 <script type="text/javascript" src="Scripts/jquery.jclock.js"></script>  
 	<script type="text/javascript" src="./source/jquery.fancybox.js"></script>
@@ -99,7 +124,7 @@ if ($dateend =='')
 <style type="text/css">
 span.dropt 
 	{
-		border-bottom: thin dotted; background: #ffeedd;
+		border-bottom: thin dotted;
 	}
 span.dropt:hover 
 	{
@@ -612,7 +637,7 @@ $(function(){
 //$sql = "SELECT xray_patient_info.MRN, xray_patient_info.CENTER_CODE, xray_request_detail.ID  AS ORDERID, xray_request_detail.REQUEST_DATE AS REQ_DATE, xray_request_detail.REQUEST_TIME AS REQ_TIME, xray_request.REQUEST_NO, xray_request_detail.REQUEST_NO AS REQNUMBER, xray_request_detail.ACCESSION, xray_request_detail.XRAY_CODE AS XRAY_CODE,xray_request_detail.STATUS, xray_request_detail.URGENT, xray_patient_info.NAME AS PTNAME, xray_patient_info.LASTNAME  AS PTLASTNAME, xray_patient_info.NAME_ENG AS NAMEENG, xray_patient_info.LASTNAME_ENG AS LASTNAMEENG, xray_patient_info.BIRTH_DATE, xray_code.DESCRIPTION, xray_referrer.NAME, xray_referrer.LASTNAME, xray_request_detail.REQUEST_TIMESTAMP AS ORDERTIME FROM  xray_request INNER JOIN xray_request_detail ON (xray_request.REQUEST_NO = xray_request_detail.REQUEST_NO) INNER JOIN xray_user ON (xray_request.USER = xray_user.CODE) INNER JOIN xray_patient_info ON (xray_request.MRN = xray_patient_info.MRN) INNER JOIN xray_department ON (xray_request.DEPARTMENT_ID = xray_department.DEPARTMENT_ID) INNER JOIN xray_referrer ON (xray_request.REFERRER = xray_referrer.REFERRER_ID)INNER JOIN xray_code ON (xray_request_detail.XRAY_CODE = xray_code.XRAY_CODE) WHERE (xray_request_detail.PAGE = 'ORDER LIST')  and (xray_request_detail.STATUS != 'CANCEL') and (xray_patient_info.CENTER_CODE ='$center_code')order by URGENT desc, ORDERTIME ASC";
 
 // This for Query default date = DATE(NOW())
-$yesterday = date("Y-m-d",mktime(0, 0, 0, date("m"), date("d")-1,date("Y")));
+$yesterday = date("Y-m-d",mktime(0, 0, 0, date("m"), date("d")-30,date("Y")));
 $sql= "
 SELECT 
 xray_patient_info.MRN, 
@@ -648,17 +673,12 @@ LEFT JOIN xray_referrer ON xray_referrer.REFERRER_ID = xray_request.REFERRER
 LEFT JOIN xray_code ON xray_code.XRAY_CODE = xray_request_detail.XRAY_CODE 
 WHERE 
 xray_request.CENTER_CODE ='$center_code' AND
-(xray_request_detail.REQUEST_DATE between '$datestart' AND '$dateend') AND
+(xray_request_detail.REQUEST_DATE = DATE(NOW()) OR xray_request_detail.REQUEST_DATE = '$yesterday') AND
 xray_request_detail.PAGE = 'ORDER LIST' AND 
 xray_request_detail.STATUS != 'CANCEL' AND 
 xray_patient_info.CENTER_CODE ='$center_code' AND 
 xray_department.CENTER ='$center_code' 
 order by URGENT desc, ACCESSION ASC, ORDERTIME ASC ";
-
-
-//(xray_request_detail.REQUEST_DATE between '$datestart' AND '$dateend')
-//(xray_request_detail.REQUEST_DATE = DATE(NOW()) OR xray_request_detail.REQUEST_DATE = '$yesterday') AND
-
 
 //AND (xray_code.CENTER ='$usercenter')
 
@@ -952,7 +972,7 @@ while($row = mysql_fetch_array($result))
 		echo "</td>";
 		
  		echo "<td><span class=\"dropt\" title=\"\">" .$row['MRN'];
-		echo "<span style=\"width:100px;\"><img src=icons/alarm-clock.png><br />Pop-up text</span></span></td>";
+		echo "<span style=\"width:100px;\"><img src=icons/alarm-clock.png><br />Time = ?!?</span></span></td>";
 		echo "<td><a id='variousL".$count."' href=order-info.php?MRN=".$row['MRN']."&ACCESSION=".$row['ACCESSION']."&XRAYCODE=".$row['XRAY_CODE']."><img border=0 src=./icon-info.png></a> ".$row['ACCESSION']."</td>";
 		echo "<td><a id='various4' href=patient-info.php?MRN=".$row['MRN'].">";
 		if ($row['SEX'] == 'M')
@@ -989,7 +1009,7 @@ while($row = mysql_fetch_array($result))
 		//echo<img src=./image/bin.png border=0 onclick=\"doDelete(".$row[ORDERID].")\" /> <a href='#'><img src=./image/upload.png border=0 onClick=\"window.open('upload.php?MRN=".$row[MRN]."&ACCESSION=".$row[ACCESSION]."','mywindow3','scrollbars=yes,resizable=yes,width=750,height=600')\"></a>";
 		//echo "<a href='#'><img src=./image/needle.gif border=0 onClick=\"window.open('stockuse.php?MRN=".$row[MRN]."&ACCESSION=".$row[ACCESSION]."','mywindow3','scrollbars=yes,resizable=yes,width=750,height=600')\"></a>";
 		
-		echo "<td><a href='scheduler/php-examples/calendar.php?ACCESSION=".$row['ACCESSION']."&MRN=".$row['MRN']."'><img src=./image/sc.gif border=0></a></td>";
+		echo "<td></td>";
 		if ($row['STATUS']=='ARRIVAL')
 			{
 				echo "<td><div id='".$row['ORDERID']."'><input type=button name=Start value=READY onclick=pt_arrive(".$row['ORDERID'].",'READY')>".$TYPE."</div></td>";
@@ -1018,7 +1038,18 @@ if ($total > $e_page)
 echo "Total =".$total;	
 echo "</div>";
 echo "</th></tr></table>";
-//echo "Yesterday =".$yesterday;
+
+//echo $datestart.$dateend;
+//echo "lllll=".$searchdate;
+//$resultdate = mysql_query("select curdate()");
+//$rowdate=mysql_fetch_array($resultdate);
+//$today = $rowdate[0];
+//echo $mod1.$mod2.$mod3.$mod4.$mod5.$mod6.$mod7.$mod8;
+//echo "<br>Today : ".$today;
+//echo "<br>Todaysearch = ".$searchtoday.$todaytype;
+//echo "<br> Center Code....".$center_code.$usercenter ;
+//$yesterday = date("Y-m-d",mktime(0, 0, 0, date("m"), date("d")-1,date("Y")));
+echo "Yesterday =".$yesterday;
 ?>
 <script language=JavaScript src="frames_body_array_<?php  echo $LANGUAGE; ?>.js" type=text/javascript></script>
 <script language=JavaScript src="mmenu.js" type=text/javascript></script> 
