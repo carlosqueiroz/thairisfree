@@ -32,7 +32,7 @@ $CREATEHL7_ORU=1;
 $CREATEHL7_ORM=0;
 $CREATEHL7_XML=0;
 // Create PDF report after approve the report.
-$CREATE_REPORT_PDF = 1;
+$CREATE_REPORT_PDF =1;
 $REPORT_PATH = 'reportpdf';
 //  Language
 $LANGUAGE = "english";
