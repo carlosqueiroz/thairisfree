@@ -573,8 +573,8 @@ $(function(){
         showOn: 'button',  
         buttonImage: 'image/calandar.jpg',  
         buttonImageOnly: true,  
-        dayNamesMin: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],   
-        monthNamesShort: ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'],  
+        dayNamesMin: ['S', 'M', 'T', 'W', 'Th', 'F', 'Sa'],  
+        monthNamesShort: ['January','February','March','April','May','June','July','August','September','October','November','December'],  
         changeMonth: true,  
         changeYear: true ,  
         beforeShow:function(){  
@@ -632,8 +632,8 @@ $(function(){
         showOn: 'button',  
         buttonImage: 'image/calandar.jpg',  
         buttonImageOnly: true,  
-        dayNamesMin: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],   
-        monthNamesShort: ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'],  
+        dayNamesMin: ['S', 'M', 'T', 'W', 'Th', 'F', 'Sa'],   
+        monthNamesShort: ['January','February','March','April','May','June','July','August','September','October','November','December'],  
         changeMonth: true,  
         changeYear: true ,  
         beforeShow:function(){  

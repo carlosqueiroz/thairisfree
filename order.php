@@ -1049,7 +1049,7 @@ echo "</th></tr></table>";
 //echo "<br>Todaysearch = ".$searchtoday.$todaytype;
 //echo "<br> Center Code....".$center_code.$usercenter ;
 //$yesterday = date("Y-m-d",mktime(0, 0, 0, date("m"), date("d")-1,date("Y")));
-echo "Yesterday =".$yesterday;
+//echo "Yesterday =".$yesterday;
 ?>
 <script language=JavaScript src="frames_body_array_<?php  echo $LANGUAGE; ?>.js" type=text/javascript></script>
 <script language=JavaScript src="mmenu.js" type=text/javascript></script> 

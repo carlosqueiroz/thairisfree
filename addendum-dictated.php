@@ -2,7 +2,7 @@
 ############################################
 # ThaiRIS (Thai Radiology Information System)
 # Version: 1.0
-# File last modified: 8 Nov 2016
+# File last modified: 12 Jan 2017
 # File name: 
 # Description :  
 # http://www.thairis.net
@@ -46,10 +46,7 @@ if ($BIRAD !=='')
 	}
 
 ////////////////Create HL7///////////////
-if ($CREATEHL7ORU==1)
-	{
 
-	}
 ////////////////////////////////////////
 
 //$sql = "Update xray_request_detail SET STATUS='APPROVED',REPORT_STATUS='1', PAGE='END' where ID='$ORDERID'";
@@ -68,7 +65,7 @@ mysql_query($sql2);
 $last_id = (mysql_insert_id());
 $sql = "UPDATE xray_request_detail SET LASTREPORT_ID='$last_id' WHERE ACCESSION='$ACCESSION'";
 mysql_query($sql);
-
+echo "<iframe src='showreportpdf.php?ACCESSION=$ACCESSION&DICTATE=YES' height='0' width='0'></iframe>";
 echo $TEXTREPORT."<br>";
 echo $COPYREPORT[0]."<br>";
 echo $COPYREPORT[1]."<br>";
@@ -79,6 +76,13 @@ echo(mysql_insert_id())."<br>";
 echo "----".$last_id;
 
 ?>
+<!--
 <script type="text/javascript">
 	window.location="dictate-worklist.php";
 </script>
+-->
+    <script>
+        var timer = setTimeout(function() {
+            window.location='dictate-worklist.php'
+        }, 10000);
+    </script>
