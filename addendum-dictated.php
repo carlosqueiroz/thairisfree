@@ -84,5 +84,5 @@ echo "----".$last_id;
     <script>
         var timer = setTimeout(function() {
             window.location='dictate-worklist.php'
-        }, 10000);
+        }, 1000);
     </script>
