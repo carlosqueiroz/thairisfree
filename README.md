@@ -13,3 +13,7 @@ Release Note :
 
 10-Jan-2017
 - Fix PDF report not create to folder after approved report from dictate worklist (added reportpdf folder)
+
+15-Jan-2017
+- Update database to 1.1
+- Fix creation pdf report
