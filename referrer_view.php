@@ -20,8 +20,13 @@ $result = mysql_query("SELECT * FROM xray_referrer");
 <meta http-equiv="Content-Type" content="text/html; charset=tis-620">
 </head>
 
-<body>
+
+<body bgcolor="#d4d4d4">
+<link href="css/main.css" rel="stylesheet" type="text/css" />
 <?php
+$topbar = "View Referrer";
+include "topbar.php";
+
 echo "<table border='1'>
 
 <tr>

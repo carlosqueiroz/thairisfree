@@ -90,7 +90,8 @@ $sql = "SELECT
 			xray_user.NAME AS APPROVE_BY,
 			xray_user.LASTNAME AS AP_LAST,
 			xray_referrer.NAME AS RNAME,
-			xray_referrer.LASTNAME AS RLAST
+			xray_referrer.LASTNAME AS RLAST,
+			xray_referrer.FAX
 			FROM xray_report 
 			INNER JOIN xray_request ON xray_report.ACCESSION = '$ACCESSION' 
 			INNER JOIN xray_request_detail ON xray_report.ACCESSION=xray_request_detail.ACCESSION AND xray_request_detail.REQUEST_NO = xray_request.REQUEST_NO
@@ -115,6 +116,11 @@ while($row = mysql_fetch_array($result)){
 	$requesttime = ": ".DateThai02($row['ARRIVAL_TIME']);
 	$approveby = $row['APPROVE_BY']." ".$row['AP_LAST'];
 	$referrer = $row['RNAME']." ".$row['RLAST'];
+	$faxnumber = $row['FAX'];
+	if ($faxnumber == '')
+		{
+			$faxnumber= "NOFAXNUMBER";
+		}
 }
 
 
@@ -329,6 +335,10 @@ if (($CREATE_REPORT_PDF !== '1') AND ($DICTATE !== 'YES'))
 
 if (($CREATE_REPORT_PDF == '1') AND ($DICTATE == 'YES'))
 	{
-		$pdf->Output("$REPORT_PATH/$ACCESSION.pdf","F");
+		$underscore = '_';
+		$r = R;
+		$n = N;
+		$pdf->Output("$REPORT_PATH/$ACCESSION$underscore$faxnumber$underscore$r$underscore$n.pdf","F");
+		//accession.pdf
 	}
 ?>

@@ -216,5 +216,5 @@ $TEXTREPORT = $BIRAD.$TEXTREPORT;
     <script>
         var timer = setTimeout(function() {
             window.location='dictate-worklist.php'
-        }, 1000);
+        }, 500);
     </script>

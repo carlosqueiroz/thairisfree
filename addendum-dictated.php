@@ -73,7 +73,7 @@ echo "ORDERID=".$ORDERID."<br>";
 echo "RADID=".$RADID;
 
 echo(mysql_insert_id())."<br>";
-echo "----".$last_id;
+//echo "----".$last_id;
 
 ?>
 <!--
@@ -84,5 +84,5 @@ echo "----".$last_id;
     <script>
         var timer = setTimeout(function() {
             window.location='dictate-worklist.php'
-        }, 1000);
+        }, 500);
     </script>

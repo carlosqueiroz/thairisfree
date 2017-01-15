@@ -83,7 +83,7 @@ a:hover { color: #0099FF; text-decoration: underline}
     </ul>
     <font face="MS Sans Serif">3.)  Referrer Physician</font>
     <ul>
-      <li><a href=referrer_new.html>New</a></li>
+      <li><a href=referrer_new.php>New</a></li>
       <li>Edit</li>
       <li><a href=referrer_view.php>View</a></li>
       <li><a href=referrer_delete.php>Delete</a></li>

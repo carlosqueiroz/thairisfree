@@ -2,26 +2,28 @@
 ############################################
 # ThaiRIS (Thai Radiology Information System)
 # Version: 1.0
-# File last modified: 8 Nov 2016
-# File name: 
-# Description :  
+# File last modified: 14 Jan 2017
+# File name: referrer_insert.php
+# Description :  Insert new referrer to database get data from referrer_new.php
 # http://www.thairis.net
 # Email : info.xraythai@gmail.com
 ############################################
-$code = trim($_POST[code]);
-$name = trim($_POST[name]);
-$lastname = trim($_POST[lastname]);
-$name_eng = trim($_POST[name_eng]);
-$lastname_eng = trim($_POST[lastname_eng]);
+$centercode = $_POST['center_code'];
+$code = trim($_POST['code']);
+$degree = trim($_POST['degree']);
+$name = trim($_POST['name']);
+$lastname = trim($_POST['lastname']);
+$email = trim($_POST['email']);
+$fax = trim($_POST['fax']);
 include "connectdb.php";
 
-echo "$code";
-echo "$name";
-echo "$lastname";
-echo "$name_eng";
-echo "$lastname_eng";
-
-$sql_insert_refer = "insert INTO xray_referrer (REFERRER_ID,NAME,LASTNAME,NAME_ENG,LASTNAME_ENG)VALUES('$code','$name','$lastname','$name_eng','$lastname_eng')";
+$sql_insert_refer = "insert INTO xray_referrer (REFERRER_ID,DEGREE, NAME,LASTNAME,CENTER_CODE,EMAIL,FAX)VALUES('$code','$degree','$name','$lastname','$centercode','$email','$fax')";
 mysql_query($sql_insert_refer);
-
+echo "Done";
 ?>
+
+    <script>
+        var timer = setTimeout(function() {
+            window.location='referrer_new.php'
+        }, 4000);
+    </script>
