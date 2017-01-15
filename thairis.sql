@@ -1255,14 +1255,14 @@ CREATE TABLE `xray_patient_info` (
 --
 
 INSERT INTO `xray_patient_info` (`ID`, `CENTER_CODE`, `MRN`, `XN`, `SSN`, `PREFIX`, `NAME`, `LASTNAME`, `NAME_ENG`, `LASTNAME_ENG`, `NAME_OLD`, `LASTNAME_OLD`, `SEX`, `BIRTH_DATE`, `TELEPHONE`, `EMAIL`, `NOTE`, `CREATE_DATE`, `FIRSTVISITDATE`, `LASTVISITDATE`, `RIGHT_CODE`, `ADDRESS`, `VILLAGE`, `ROAD`, `TAMBON_CODE`, `AMPHOE_CODE`, `PROVINCE_CODE`, `COUNTRY_CODE`) VALUES
-(22282270, 'THAIRIS', 'T001', 'T001', NULL, NULL, 'TEST', 'RADIOLOGY', '', '', NULL, NULL, 'M', '1780-10-04', '', '', NULL, '2016-10-08 15:14:13', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
-(22282271, 'THAIRIS', 'T002', 'T002', NULL, NULL, 'Test2', 'Radiology', '', '', NULL, NULL, 'F', '1970-01-01', '', '', NULL, '2016-10-09 05:52:47', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
-(22282272, 'THAIRIS', 'T003', 'T003', NULL, NULL, 'Test3', 'Radiology', '', '', NULL, NULL, 'M', '2016-10-04', '', '', NULL, '2016-10-10 01:40:49', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
-(22282273, 'THAIRIS', 'T004', 'T004', NULL, NULL, 'Ray', 'Mcdonal', '', '', NULL, NULL, 'M', '1970-01-01', '', '', NULL, '2016-10-10 14:30:42', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
-(22282274, 'THAIRIS', 'T005', 'T005', NULL, NULL, 'Test5', 'Demo', '', '', NULL, NULL, 'M', '2016-10-07', '', '', NULL, '2016-10-12 08:01:34', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
-(22282275, 'THAIRIS', 'T007', 'T007', NULL, NULL, 'ThaRIS', 'Testing', '', '', NULL, NULL, 'M', '1976-01-01', '', '', NULL, '2016-10-13 00:51:42', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
-(22282276, 'THAIRIS', 'C001', 'C001', NULL, NULL, 'Hillary', 'Clinton', '', '', NULL, NULL, 'F', '2016-11-07', '', '', NULL, '2016-11-09 01:20:37', NULL, NULL, NULL, '', NULL, '', '', '', '', 'England'),
-(22282277, 'THAIRIS', 'D001', 'D001', NULL, NULL, 'Donal', 'Trumb', '', '', NULL, NULL, 'M', '2016-11-07', '', '', NULL, '2016-11-09 01:23:06', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand');
+(1, 'THAIRIS', 'T001', 'T001', NULL, NULL, 'TEST', 'RADIOLOGY', '', '', NULL, NULL, 'M', '1780-10-04', '', '', NULL, '2016-10-08 15:14:13', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
+(2, 'THAIRIS', 'T002', 'T002', NULL, NULL, 'Test2', 'Radiology', '', '', NULL, NULL, 'F', '1970-01-01', '', '', NULL, '2016-10-09 05:52:47', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
+(3, 'THAIRIS', 'T003', 'T003', NULL, NULL, 'Test3', 'Radiology', '', '', NULL, NULL, 'M', '2016-10-04', '', '', NULL, '2016-10-10 01:40:49', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
+(4, 'THAIRIS', 'T004', 'T004', NULL, NULL, 'Ray', 'Mcdonal', '', '', NULL, NULL, 'M', '1970-01-01', '', '', NULL, '2016-10-10 14:30:42', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
+(5, 'THAIRIS', 'T005', 'T005', NULL, NULL, 'Test5', 'Demo', '', '', NULL, NULL, 'M', '2016-10-07', '', '', NULL, '2016-10-12 08:01:34', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
+(6, 'THAIRIS', 'T007', 'T007', NULL, NULL, 'ThaRIS', 'Testing', '', '', NULL, NULL, 'M', '1976-01-01', '', '', NULL, '2016-10-13 00:51:42', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand'),
+(7, 'THAIRIS', 'C001', 'C001', NULL, NULL, 'Hillary', 'Clinton', '', '', NULL, NULL, 'F', '2016-11-07', '', '', NULL, '2016-11-09 01:20:37', NULL, NULL, NULL, '', NULL, '', '', '', '', 'England'),
+(8, 'THAIRIS', 'D001', 'D001', NULL, NULL, 'Donal', 'Trumb', '', '', NULL, NULL, 'M', '2016-11-07', '', '', NULL, '2016-11-09 01:23:06', NULL, NULL, NULL, '', NULL, '', '', '', '', 'Thailand');
 
 -- --------------------------------------------------------
 
@@ -1351,7 +1351,7 @@ CREATE TABLE `xray_referrer` (
 --
 
 INSERT INTO `xray_referrer` (`ID`, `REFERRER_ID`, `DEGREE`, `NAME`, `LASTNAME`, `NAME_ENG`, `LASTNAME_ENG`, `PREFIX`, `SEX`, `CENTER_CODE`) VALUES
-(401, '401', 'MD', 'John', 'Smith', 'John', 'Smith', NULL, 'M', 'THAIRIS');
+(1, '1', 'MD', 'John', 'Smith', 'John', 'Smith', NULL, 'M', 'THAIRIS');
 
 -- --------------------------------------------------------
 
@@ -2148,7 +2148,7 @@ ALTER TABLE `xray_order_cart`
 -- AUTO_INCREMENT for table `xray_patient_info`
 --
 ALTER TABLE `xray_patient_info`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22282278;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `xray_preparation`
 --
@@ -2158,7 +2158,7 @@ ALTER TABLE `xray_preparation`
 -- AUTO_INCREMENT for table `xray_referrer`
 --
 ALTER TABLE `xray_referrer`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=402;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `xray_report`
 --
@@ -2173,7 +2173,7 @@ ALTER TABLE `xray_report_structure`
 -- AUTO_INCREMENT for table `xray_report_template`
 --
 ALTER TABLE `xray_report_template`
-  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=551;
+  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `xray_request`
 --
