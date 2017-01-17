@@ -1,13 +1,4 @@
 <?php
-############################################
-# ThaiRIS (Thai Radiology Information System)
-# Version: 1.0
-# File last modified: 8 Nov 2016
-# File name: 
-# Description :  
-# http://www.thairis.net
-# Email : info.xraythai@gmail.com
-############################################
 //header("Content-type: text/html;  charset=TIS-620");
 include ("session.php");
 include "connectdb.php";
@@ -38,16 +29,16 @@ if ($DEPARTMENT == '')
 		echo "Please Select Department";
 		exit;
 	}
-echo "HN=".$HN;
-echo "<br />Reffer : ".$REFERRER;
-echo "<br />Department : ".$DEPARTMENT;
+//echo "MRN=".$HN;
+//echo "<br />Physician : ".$REFERRER;
+//echo "<br />Department : ".$DEPARTMENT;
 
 $sql = "select * FROM xray_code WHERE XRAY_TYPE_CODE = '$TYPE' LIMIT 0,15" ;
 $result = mysql_query($sql);
 
-echo "<table border='0'>
+echo "<table border='0' width=100%>
 
-<tr>
+<tr bgcolor=#79acf3>
 <th>Code</th>
 <th>Procedure</th>
 <th>Type</th>
@@ -65,7 +56,7 @@ while($row = mysql_fetch_array($result))
   { 
 	if($bg == "#FFFFFF") 
 		{
-			$bg = "#FFCCCC";
+			$bg = "#EBEBEB";
 		} 
 	else 
 		{
@@ -83,8 +74,8 @@ while($row = mysql_fetch_array($result))
   }
 
 echo "</table>";
-echo "Type = ".$TYPE;
-echo "User = ".$username;
+//echo "Type = ".$TYPE;
+//echo "User = ".$username;
 ?>
 
 </body>

@@ -1,13 +1,4 @@
 ﻿<?php
-############################################
-# ThaiRIS (Thai Radiology Information System)
-# Version: 1.0
-# File last modified: 8 Nov 2016
-# File name: 
-# Description :  
-# http://www.thairis.net
-# Email : info.xraythai@gmail.com
-############################################
 header("Content-type: text/html;  charset=TIS-620");
 // Query Procedure
 $REFERRER = isset($_GET['REFERRER']) ? $_GET['REFERRER'] : null;
@@ -19,7 +10,7 @@ include ("function.php");
 
 if ($TYPE=="SEARCH")
 	{
-		echo "search";
+		//echo "search";
 		$sql = "SELECT * FROM `xray_referrer` WHERE NAME LIKE '%$REFERRER%'";
 		$result = mysql_query($sql);
 		$total=mysql_num_rows($result);
@@ -47,22 +38,14 @@ if ($TYPE=="SEARCH")
 		$before_p=($chk_page*$e_page)+1;  
 
 
-		echo "<html><head>
-				<title>Search</title>
-				<meta http-equiv=\"Content-Type\" content=\"text/html; charset=tis-620\">
-				<link href=\"css/page.css\" rel=\"stylesheet\" type=\"text/css\" />
-				</head>
-				<body>";
-		echo $REFERRER."<br \><p>";
+		//echo $REFERRER."<br \><p>";
 		echo "<table border='0' width=100%>
-				<tr>
-				<th>CODE</th>
-				<th>DEGREE</th>
-				<th>NAME</th>
-				<th>LASTNAME</th>
-				<th>English Name</th>
-				<th>English LASTNAME</th>
-				<th></th>
+				<tr bgcolor=#79acf3>
+				<th>Code</th>
+				<th>Degree</th>
+				<th>Name</th>
+				<th>Lastname</th>
+				<th>Select</th>
 				</tr>\n";
 		while($row = mysql_fetch_array($result))
 			{
@@ -79,9 +62,7 @@ if ($TYPE=="SEARCH")
 				echo "<td>" . $row['DEGREE'] . "</td>";
 				echo "<td>" . $row['NAME'] . "</td>";
 				echo "<td>" . $row['LASTNAME'] . "</td>";
-				echo "<td>" . $row['NAME_ENG'] . "</td>";
-				echo "<td>" . $row['LASTNAME_ENG'] . "</td>";
-				echo "<td><input type=\"submit\" value=\"Submit\" onclick=selected_referrer('".$row['REFERRER_ID']."')></td>";
+				echo "<td><input type=\"submit\" value=\"Select\" onclick=selected_referrer('".$row['REFERRER_ID']."')></td>";
 				//echo "<td> <input name=\"id\" type=\"hidden\" id=\"id\" value=\"".$row['ID']."\"><input type=\"submit\" value=\"Submit\" /></td>";
 				echo "</tr>\n";
 			}
@@ -93,7 +74,7 @@ if ($total > $e_page)
 	{
 		page_navigator($before_p,$plus_p,$total,$total_p,$chk_page);     
 	}
-echo "Total =".$total;	
+//echo "Total =".$total;	
 echo "</div>";
   
 	} // end if TYPE=SEARCH

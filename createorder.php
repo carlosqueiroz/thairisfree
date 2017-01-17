@@ -1,13 +1,4 @@
 <?php
-############################################
-# ThaiRIS (Thai Radiology Information System)
-# Version: 1.0
-# File last modified: 8 Nov 2016
-# File name: 
-# Description :  
-# http://www.thairis.net
-# Email : info.xraythai@gmail.com
-############################################
 header("Content-type: text/html;  charset=TIS-620");
 $mrn = $_POST['MRN'];
 include ("session.php");
@@ -54,13 +45,13 @@ echo "<table border=0 width=100%><tr valign=top><td bgcolor=#848484 width=200>";
 echo "<table>";
 echo "<tr><td bgcolor=#79acf3><center><b>Patient Infomation</b></center></td></tr><tr><td>";
 echo "<table width=100%><tr><td bgcolor=#EBEBEB>";
-echo "<b>HN </b>: ".$hn."<br>";
-echo "<b>NAME </b>".$name."\t<br><b>LASTNAME </b>".$lastname;
+echo "<b>MRN </b>: ".$hn."<br>";
+echo "<b>Name </b>".$name."\t<br><b>Lastname</b>".$lastname;
 echo "</td></tr></table>";
 echo "<hr>";
  
 echo "<table><tr><td bgcolor=#79acf3>";
-echo "<b>Order By</b></td></tr><tr><td bgcolor=#EBEBEB>";
+echo "<b>Referrer Physician</b></td></tr><tr><td bgcolor=#EBEBEB>";
 echo "<form name=referrerform>";
 echo "<div id=referrer><font color=red>Please search Doctor</font>";
 echo "<input type=\"hidden\" name=\"referrer\" id=\"referrer\" value=''></div>";
@@ -80,7 +71,8 @@ echo "</form></td></tr></table><hr>";
 
 
 echo "<table width=100%><tr><td bgcolor=#79acf3>";
-echo "<b>Select Order Type</b></td></tr><tr><td bgcolor=#EBEBEB>";
+echo "<b>Select Procedure</b></td></tr>";
+echo "<tr><td bgcolor=#EBEBEB>";
 $sql2 ="select * FROM xray_type";
 $result2 = mysql_query($sql2);
 
@@ -92,17 +84,23 @@ while ($row =mysql_fetch_array($result2))
 	}
 
 echo "</select>";
+echo "<input type=\"text\" name=\"procedure\" id=\"procedure\" onKeyup=\"select_procedure()\" onkeypress=\"return event.keyCode!=13\" ><input type=\"button\" name=\"search\" value=\"Search\"  onclick=select_procedure()>";
 echo "</td></tr></table>\n";
 echo "</td></tr></table>\n";
 echo "<form name=typeselect>";
 echo "<input type=\"hidden\" name=\"TYPE\" value=\"CT\">\n";
 echo "</form>\n"; 
-echo "<td width=60%>";
-echo "<table width=100%><tr><td>Search : <input type=textbox> <input type=button name=Search3 value=Search></td><tr><td><font face=\"MS Sans Serif\"><div id=show></div></font></td></tr></table></td>\n";
+echo "<td width=50%>";
+echo "<table width=100% border=0>";
+//echo "<tr>";
+//echo "<td>Search : <input type=textbox> <input type=button name=Search3 value=Search></td>";
+//echo "</tr>";
+echo "<tr>";
+echo "<td><font face=\"MS Sans Serif\"><div id=show>Select Referrer, Department, Procedure from left menu</div></font></td></tr></table></td>\n";
 echo "<form>";
 echo "<td align=center bgcolor=#CCCCCC>";
 echo "<table width=100%><tr><td>";
-echo "Selected Order <br> <div id=selectorder></div>";
+echo "<div id=selectorder>Selected Order</div>";
 echo "</tr></td></table>";
 echo "</td></form>";
 echo"</tr><table>";

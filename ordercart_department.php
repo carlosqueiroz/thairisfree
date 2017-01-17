@@ -1,13 +1,4 @@
 <?php
-############################################
-# ThaiRIS (Thai Radiology Information System)
-# Version: 1.0
-# File last modified: 8 Nov 2016
-# File name: 
-# Description :  
-# http://www.thairis.net
-# Email : info.xraythai@gmail.com
-############################################
 header("Content-type: text/html;  charset=utf-8");
 $DEPARTMENT = isset($_GET['DEPARTMENT']) ? $_GET['DEPARTMENT'] : null;
 $DEPARTMENT_ID = isset($_GET['DEPARTMENT_ID']) ? $_GET['DEPARTMENT_ID'] : null;
@@ -27,12 +18,12 @@ include "connectdb.php";
 if ($TYPE=="SEARCH")
 	{
 		$result = mysql_query("SELECT * FROM `xray_department` WHERE NAME_THAI LIKE '%$DEPARTMENT%'");
-		echo "<table border='0'>
-				<tr>
-				<td bgcolor=#D7D7D7>Department ID</td>
-				<td bgcolor=#D7D7D7>NAME</td>
-				<td bgcolor=#D7D7D7>ENGLISH</td>
-				<td bgcolor=#D7D7D7></td>
+		echo "<table border='0' width=100%>
+				<tr bgcolor=#79acf3>
+				<th >Department ID</th>
+				<th>NAME</th>
+				<th >ENGLISH</th>
+				<th ></th>
 				</tr>\n";
 		while($row = mysql_fetch_array($result))
 			{
