@@ -75,7 +75,7 @@ a:hover { color: #0099FF; text-decoration: underline}
     <font face="MS Sans Serif">2.) Radiology Staff</font>
     <ul>
       <li><a href=staff_new.php>New</a></li>
-      <li>Edit</li>
+      <li><a href=staff_show.php>Edit</a></li>
       <li><a href=staff_view.php>View</a></li>
       <li>Delete</li>
       <li><a href=add_df_code.php>Add DF Code</a></li>
