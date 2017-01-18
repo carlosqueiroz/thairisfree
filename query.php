@@ -549,8 +549,11 @@ $(function(){
 	
 	<td bgcolor="#f8d290">
 	<button type=submit class="positive" value="submit"><img src="icons/table-excel.png" width=15 alt="Search" border=0 /> Export to Excel </button>
+	
+	<!--
 	<button type=button class="positive" value=""><img src="icons/find.png" width=15 alt="Search" border=0 /> Preview </button>
 	<button type=button class="positive" value=""><img src="icons/pdf_icon.gif" width=15 alt="Search" border=0 /> Expert PDF </button>
+	-->
 	</td>
 	</form>
 	</tr>
@@ -827,9 +830,148 @@ $(function(){
 
 	
 	
+	
+	
+	
+	
+<!------xxxxxx--------->
+
+<form method="post" action="export-report.php">
+
+<td bgcolor="#f8d290" align=Left>4. ) Export Reports	</td>
+<td bgcolor="#f8d290">
+<center>
+FROM : 
+<input type="text" name="date7" id="dateInput7" value=''size=8/> 
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>  
+<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script> 
+<script type="text/javascript">  
+$(function(){  
+    var dateBefore=null;  
+    $("#dateInput7").datepicker({  
+        dateFormat: 'yy-mm-dd',  
+        showOn: 'button',  
+        buttonImage: 'image/calandar.jpg',  
+        buttonImageOnly: true,  
+        dayNamesMin: ['S', 'M', 'T', 'W', 'Th', 'F', 'Sa'],   
+        monthNamesShort: ['January','February','March','April','May','June','July','August','September','October','November','December'],  
+        changeMonth: true,  
+        changeYear: true ,  
+        beforeShow:function(){  
+            if($(this).val()!=""){  
+                var arrayDate=$(this).val().split("-");       
+                arrayDate[2]=parseInt(arrayDate[2]);  
+                //arrayDate[2]=parseInt(arrayDate[2])-543;  
+				$(this).val(arrayDate[0]+"-"+arrayDate[1]+"-"+arrayDate[2]);  
+            }  
+            setTimeout(function(){  
+                $.each($(".ui-datepicker-year option"),function(j,k){  
+                    var textYear=parseInt($(".ui-datepicker-year option").eq(j).val());  
+                    //var textYear=parseInt($(".ui-datepicker-year option").eq(j).val())+543;  
+					$(".ui-datepicker-year option").eq(j).text(textYear);  
+                });               
+            },50);  
+  
+        },  
+        onChangeMonthYear: function(){  
+            setTimeout(function(){  
+                $.each($(".ui-datepicker-year option"),function(j,k){  
+                    var textYear=parseInt($(".ui-datepicker-year option").eq(j).val());  
+                    //var textYear=parseInt($(".ui-datepicker-year option").eq(j).val())+543;  
+					$(".ui-datepicker-year option").eq(j).text(textYear);  
+                });               
+            },50);        
+        },  
+        onClose:function(){  
+            if($(this).val()!="" && $(this).val()==dateBefore){           
+                var arrayDate=dateBefore.split("-");  
+                arrayDate[2]=parseInt(arrayDate[2]);  
+                //arrayDate[2]=parseInt(arrayDate[2])+543;  
+			   $(this).val(arrayDate[0]+"-"+arrayDate[1]+"-"+arrayDate[2]);      
+            }         
+        },  
+        onSelect: function(dateText, inst){   
+            dateBefore=$(this).val();  
+            var arrayDate=dateText.split("-");  
+            arrayDate[2]=parseInt(arrayDate[2]);  
+            //arrayDate[2]=parseInt(arrayDate[2])+543; 
+			$(this).val(arrayDate[0]+"-"+arrayDate[1]+"-"+arrayDate[2]);  
+        }  
+  
+    });  
+      
+});  
+</script>						
+TO : 
+<input type="text" name="date8" id="dateInput8" value=''size=8/> 
+<script type="text/javascript">  
+$(function(){  
+    var dateBefore=null;  
+    $("#dateInput8").datepicker({  
+        dateFormat: 'yy-mm-dd',  
+        showOn: 'button',  
+        buttonImage: 'image/calandar.jpg',  
+        buttonImageOnly: true,  
+        dayNamesMin: ['S', 'M', 'T', 'W', 'Th', 'F', 'Sa'],   
+        monthNamesShort: ['January','February','March','April','May','June','July','August','September','October','November','December'],  
+        changeMonth: true,  
+        changeYear: true ,  
+        beforeShow:function(){  
+            if($(this).val()!=""){  
+                var arrayDate=$(this).val().split("-");       
+                arrayDate[2]=parseInt(arrayDate[2]);  
+                //arrayDate[2]=parseInt(arrayDate[2])-543;  
+				$(this).val(arrayDate[0]+"-"+arrayDate[1]+"-"+arrayDate[2]);  
+            }  
+            setTimeout(function(){  
+                $.each($(".ui-datepicker-year option"),function(j,k){  
+                    var textYear=parseInt($(".ui-datepicker-year option").eq(j).val());  
+                    //var textYear=parseInt($(".ui-datepicker-year option").eq(j).val())+543;  
+					$(".ui-datepicker-year option").eq(j).text(textYear);  
+                });               
+            },50);  
+  
+        },  
+        onChangeMonthYear: function(){  
+            setTimeout(function(){  
+                $.each($(".ui-datepicker-year option"),function(j,k){  
+                    var textYear=parseInt($(".ui-datepicker-year option").eq(j).val());  
+                    //var textYear=parseInt($(".ui-datepicker-year option").eq(j).val())+543;  
+					$(".ui-datepicker-year option").eq(j).text(textYear);  
+                });               
+            },50);        
+        },  
+        onClose:function(){  
+            if($(this).val()!="" && $(this).val()==dateBefore){           
+                var arrayDate=dateBefore.split("-");  
+                arrayDate[2]=parseInt(arrayDate[2]);  
+                //arrayDate[2]=parseInt(arrayDate[2])+543;  
+			   $(this).val(arrayDate[0]+"-"+arrayDate[1]+"-"+arrayDate[2]);      
+            }         
+        },  
+        onSelect: function(dateText, inst){   
+            dateBefore=$(this).val();  
+            var arrayDate=dateText.split("-");  
+            arrayDate[2]=parseInt(arrayDate[2]);  
+            //arrayDate[2]=parseInt(arrayDate[2])+543; 
+			$(this).val(arrayDate[0]+"-"+arrayDate[1]+"-"+arrayDate[2]);  
+        }  
+  
+    });  
+      
+});  
+</script>	
+
+</center>
+	</td>
+	
+	<td bgcolor="#f8d290"><button type=submit class="positive" value="submit"><img src="icons/table-excel.png" width=15 alt="Search" border=0 /> Export to Excel </button></td>
+	</form>
+	</tr>	
+	
 <tr>	
 <form method="post" action="export-template.php">
-<td bgcolor="#f8d290" align=Left>4. ) Export  All Templates	</td>
+<td bgcolor="#f8d290" align=Left>5. ) Export  All Templates	</td>
 <td bgcolor="#f8d290"></td>
 <td bgcolor="#f8d290"><button type=submit class="positive" value="submit"><img src="icons/table-excel.png" width=15 alt="Search" border=0 /> Export to Excel </button></td>
 </form>
@@ -843,9 +985,26 @@ $(function(){
 
 
 echo "</br>";
-echo "<center><font color=gray>More query can request to ThaiRIS.Net CopyRight(C)</font></center>";
+echo "<center><font color=white>CopyRight(C)</font></center>";
 
-
+//echo "Select User:".$selectuserID."<br />";
+//echo "MRN:".$mrn."<br />";
+//echo "ACC".$acc."<br />";
+//echo $searchname."<br />";
+//echo $searchlast."<br />";
+//echo $mod1."<br />";
+//echo $mod2."<br />";
+//echo $mod3."<br />";
+//echo $mod4."<br />";
+//echo $mod5."<br />";
+//echo $mod6."<br />";
+//echo $mod7."<br />";
+//echo $mod8."<br />";
+//echo $date1."<br />";
+//echo $date2."<br />";
+//echo "userSearch ".$usercodesearch."<br />";
+//echo "userCode :".$usercode;
+//echo $sql;
 ?>
 
 </body>
